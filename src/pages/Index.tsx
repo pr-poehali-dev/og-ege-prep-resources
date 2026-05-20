@@ -3,109 +3,7 @@ import Icon from "@/components/ui/icon";
 
 // ─── DATA ────────────────────────────────────────────────────────────────────
 
-const subjects = [
-  { id: "all", label: "Все предметы", emoji: "📚" },
-  { id: "math", label: "Математика", emoji: "∑" },
-  { id: "physics", label: "Физика", emoji: "⚛" },
-  { id: "chemistry", label: "Химия", emoji: "⚗" },
-  { id: "history", label: "История", emoji: "⏳" },
-  { id: "literature", label: "Литература", emoji: "✒" },
-  { id: "biology", label: "Биология", emoji: "🌿" },
-  { id: "english", label: "Английский", emoji: "◈" },
-];
 
-const materials = [
-  {
-    id: 1,
-    subject: "math",
-    type: "Шпаргалка",
-    title: "Производные и интегралы",
-    desc: "Все формулы дифференцирования и интегрирования в одной таблице",
-    pages: 2,
-    level: "Средний",
-    downloads: 4821,
-  },
-  {
-    id: 2,
-    subject: "physics",
-    type: "Справочник",
-    title: "Механика. Законы Ньютона",
-    desc: "Полный разбор трёх законов с формулами и примерами задач",
-    pages: 8,
-    level: "Базовый",
-    downloads: 3240,
-  },
-  {
-    id: 3,
-    subject: "chemistry",
-    type: "Шпаргалка",
-    title: "Таблица растворимости",
-    desc: "Растворимость солей, кислот и оснований в воде при 25°C",
-    pages: 1,
-    level: "Базовый",
-    downloads: 6103,
-  },
-  {
-    id: 4,
-    subject: "history",
-    type: "Справочник",
-    title: "Даты Второй мировой войны",
-    desc: "Хронология ключевых событий 1939–1945 годов по месяцам",
-    pages: 5,
-    level: "Средний",
-    downloads: 2914,
-  },
-  {
-    id: 5,
-    subject: "math",
-    type: "Справочник",
-    title: "Геометрия. Формулы площадей",
-    desc: "Площади и объёмы всех плоских и объёмных фигур",
-    pages: 3,
-    level: "Базовый",
-    downloads: 5512,
-  },
-  {
-    id: 6,
-    subject: "literature",
-    type: "Шпаргалка",
-    title: "Герои романа «Война и мир»",
-    desc: "Краткие характеристики 40 персонажей с цитатами",
-    pages: 4,
-    level: "Средний",
-    downloads: 1876,
-  },
-  {
-    id: 7,
-    subject: "biology",
-    type: "Справочник",
-    title: "Клетка. Строение и функции",
-    desc: "Органоиды клетки, их функции и особенности строения",
-    pages: 6,
-    level: "Средний",
-    downloads: 2388,
-  },
-  {
-    id: 8,
-    subject: "english",
-    type: "Шпаргалка",
-    title: "Все времена английского языка",
-    desc: "12 времён с формулами образования и примерами использования",
-    pages: 2,
-    level: "Базовый",
-    downloads: 7291,
-  },
-  {
-    id: 9,
-    subject: "physics",
-    type: "Шпаргалка",
-    title: "Электричество. Законы и формулы",
-    desc: "Закон Ома, формулы мощности, последовательное и параллельное соединение",
-    pages: 2,
-    level: "Средний",
-    downloads: 3105,
-  },
-];
 
 const stats = [
   { value: "60+", label: "Бесплатных ресурсов" },
@@ -150,7 +48,6 @@ function Navbar({ active, setActive }: { active: string; setActive: (s: string) 
 
   const links = [
     { id: "home", label: "Главная" },
-    { id: "materials", label: "Материалы" },
     { id: "resources", label: "Ресурсы" },
     { id: "about", label: "О платформе" },
     { id: "contacts", label: "Контакты" },
@@ -192,7 +89,7 @@ function Navbar({ active, setActive }: { active: string; setActive: (s: string) 
         </nav>
 
         <button
-          onClick={() => handleNav("materials")}
+          onClick={() => handleNav("resources")}
           className="hidden md:flex items-center gap-2 px-4 py-2 bg-gold text-background text-sm font-medium tracking-wide hover:bg-gold/90 transition-colors duration-200"
         >
           <Icon name="BookOpen" size={15} />
@@ -274,7 +171,7 @@ function HeroSection() {
 
         <div className="opacity-0-init animate-fade-up delay-600 flex flex-col sm:flex-row gap-4 justify-center">
           <button
-            onClick={() => document.getElementById("materials")?.scrollIntoView({ behavior: "smooth" })}
+            onClick={() => document.getElementById("resources")?.scrollIntoView({ behavior: "smooth" })}
             className="group px-8 py-4 bg-gold text-background font-golos font-semibold tracking-wide hover:bg-gold/90 transition-all duration-300 flex items-center gap-3 justify-center"
           >
             <Icon name="Library" size={18} />
@@ -311,141 +208,7 @@ function HeroSection() {
   );
 }
 
-// ─── MATERIALS ───────────────────────────────────────────────────────────────
 
-function MaterialCard({ material: m }: { material: typeof materials[0] }) {
-  const subjectColors: Record<string, string> = {
-    math: "text-blue-400",
-    physics: "text-purple-400",
-    chemistry: "text-green-400",
-    history: "text-amber-400",
-    literature: "text-rose-400",
-    biology: "text-emerald-400",
-    english: "text-cyan-400",
-  };
-
-  return (
-    <div className="card-hover bg-card p-6 flex flex-col gap-4 cursor-pointer group">
-      <div className="flex items-center justify-between">
-        <span className={`text-xs font-golos uppercase tracking-[0.15em] font-medium ${subjectColors[m.subject] ?? "text-gold"}`}>
-          {subjects.find((s) => s.id === m.subject)?.emoji}{" "}
-          {subjects.find((s) => s.id === m.subject)?.label}
-        </span>
-        <span className="text-xs font-golos text-muted-foreground bg-secondary px-2 py-0.5">
-          {m.type}
-        </span>
-      </div>
-
-      <h3 className="font-cormorant text-2xl font-semibold leading-tight text-foreground group-hover:text-gold transition-colors duration-300">
-        {m.title}
-      </h3>
-
-      <p className="text-sm text-muted-foreground font-golos leading-relaxed flex-1">
-        {m.desc}
-      </p>
-
-      <div className="h-px bg-border group-hover:bg-gold/20 transition-colors duration-300" />
-
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4 text-xs text-muted-foreground font-golos">
-          <span className="flex items-center gap-1">
-            <Icon name="FileText" size={12} />
-            {m.pages} стр.
-          </span>
-          <span className="flex items-center gap-1">
-            <Icon name="BarChart2" size={12} />
-            {m.level}
-          </span>
-          <span className="flex items-center gap-1">
-            <Icon name="Download" size={12} />
-            {m.downloads.toLocaleString("ru")}
-          </span>
-        </div>
-        <button className="w-8 h-8 border border-border flex items-center justify-center text-muted-foreground hover:border-gold/50 hover:text-gold transition-all duration-200">
-          <Icon name="Download" size={14} />
-        </button>
-      </div>
-    </div>
-  );
-}
-
-function MaterialsSection() {
-  const [activeSubject, setActiveSubject] = useState("all");
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const filtered = materials.filter((m) => {
-    const matchSubject = activeSubject === "all" || m.subject === activeSubject;
-    const matchSearch =
-      !searchQuery ||
-      m.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      m.desc.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchSubject && matchSearch;
-  });
-
-  return (
-    <section id="materials" className="py-32 px-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-16">
-          <div className="flex items-center gap-4 mb-4">
-            <div className="h-px w-8 bg-gold/60" />
-            <span className="text-gold/80 text-xs tracking-[0.2em] uppercase font-golos">Библиотека</span>
-          </div>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <h2 className="font-cormorant text-5xl md:text-7xl font-light leading-none">
-              Шпаргалки<br />
-              <span className="italic text-gold">и справочники</span>
-            </h2>
-            <div className="relative max-w-xs w-full">
-              <Icon name="Search" size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-              <input
-                type="text"
-                placeholder="Поиск по материалам..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-9 pr-4 py-2.5 bg-card border border-border text-foreground font-golos text-sm placeholder:text-muted-foreground focus:outline-none focus:border-gold/40 transition-colors"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div className="flex flex-wrap gap-2 mb-10">
-          {subjects.map((s) => (
-            <button
-              key={s.id}
-              onClick={() => setActiveSubject(s.id)}
-              className={`subject-tag ${activeSubject === s.id ? "active" : "text-muted-foreground bg-card"}`}
-            >
-              <span>{s.emoji}</span>
-              {s.label}
-            </button>
-          ))}
-        </div>
-
-        {filtered.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {filtered.map((m) => (
-              <MaterialCard key={m.id} material={m} />
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-24 text-muted-foreground font-golos">
-            <div className="font-cormorant text-5xl mb-4 text-gold/30">∅</div>
-            <p>По запросу ничего не найдено</p>
-          </div>
-        )}
-
-        <div className="mt-12 text-center">
-          <p className="text-muted-foreground text-sm font-golos mb-4">
-            Показано {filtered.length} из {materials.length} материалов
-          </p>
-          <button className="px-6 py-3 border border-gold/30 text-gold/80 text-sm font-golos tracking-wide hover:border-gold hover:text-gold transition-all duration-300">
-            Загрузить ещё
-          </button>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 // ─── ABOUT ───────────────────────────────────────────────────────────────────
 
@@ -974,7 +737,7 @@ export default function Index() {
   const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
-    const sections = ["home", "materials", "resources", "about", "contacts"];
+    const sections = ["home", "resources", "about", "contacts"];
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -995,7 +758,6 @@ export default function Index() {
       <Navbar active={activeSection} setActive={setActiveSection} />
       <main>
         <HeroSection />
-        <MaterialsSection />
         <ResourcesSection />
         <AboutSection />
         <ContactsSection />
