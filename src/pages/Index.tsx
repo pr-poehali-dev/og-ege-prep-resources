@@ -154,19 +154,20 @@ function HeroSection() {
 
         <h1 className="font-cormorant font-light leading-none tracking-tight mb-6">
           <span className="block text-[clamp(3rem,10vw,8rem)] opacity-0-init animate-fade-up delay-200 text-foreground">
-            Бесплатная
+            Навигация
           </span>
           <span className="block text-[clamp(3rem,10vw,8rem)] opacity-0-init animate-fade-up delay-300 text-gold-shimmer">
-            подготовка
+            успеха
           </span>
           <span className="block text-[clamp(1.8rem,5vw,4rem)] opacity-0-init animate-fade-up delay-400 text-muted-foreground font-light italic mt-2">
-            к ОГЭ и ЕГЭ — реально
+            ОГЭ и ЕГЭ — всё в одном месте
           </span>
         </h1>
 
-        <p className="opacity-0-init animate-fade-up delay-500 text-muted-foreground font-golos text-lg max-w-xl mx-auto leading-relaxed mb-12">
-          Исследовательский проект: обзор и систематизация бесплатных онлайн-ресурсов
-          для подготовки к школьным экзаменам. Без рекламы, без продаж.
+        <p className="opacity-0-init animate-fade-up delay-500 text-muted-foreground font-golos text-lg max-w-2xl mx-auto leading-relaxed mb-12">
+          Платформа-агрегатор, которая собрала всё для эффективной подготовки. Мы не продаём курсы
+          и не навязываем репетиторов. Наша задача — помочь вам сориентироваться в океане онлайн-школ,
+          видеолекций, тренажёров и каналов, чтобы вы тратили время на учёбу, а не на поиски.
         </p>
 
         <div className="opacity-0-init animate-fade-up delay-600 flex flex-col sm:flex-row gap-4 justify-center">
