@@ -175,7 +175,7 @@ function Navbar({ active, setActive }: { active: string; setActive: (s: string) 
             <div className="w-3 h-3 bg-gold group-hover:scale-110 transition-transform duration-300" />
           </div>
           <span className="font-cormorant text-xl font-semibold tracking-wide text-foreground">
-            Атлас <span className="text-gold">Знаний</span>
+            Навигация <span className="text-gold">успеха</span>
           </span>
         </button>
 
@@ -462,25 +462,16 @@ function AboutSection() {
           <div>
             <div className="flex items-center gap-4 mb-6">
               <div className="h-px w-8 bg-gold/60" />
-              <span className="text-gold/80 text-xs tracking-[0.2em] uppercase font-golos">Об исследовании</span>
+              <span className="text-gold/80 text-xs tracking-[0.2em] uppercase font-golos">О проекте</span>
             </div>
             <h2 className="font-cormorant text-5xl md:text-6xl font-light leading-tight mb-8">
-              Зачем платить, если<br />
-              <em className="text-gold not-italic">есть бесплатно?</em>
+              «Навигация<br />
+              <em className="text-gold not-italic">успеха»</em>
             </h2>
             <p className="text-muted-foreground font-golos leading-relaxed mb-6">
-              Многие школьники и родители считают, что хорошо подготовиться к ОГЭ и ЕГЭ
-              можно только с репетитором или на платных курсах. Это исследование проверяет
-              этот миф на практике.
-            </p>
-            <p className="text-muted-foreground font-golos leading-relaxed mb-6">
-              Я изучила более 60 онлайн-ресурсов, провела опрос среди одноклассников
-              и систематизировала результаты. Вывод: бесплатных инструментов достаточно
-              для уверенной подготовки — если знать, где искать.
-            </p>
-            <p className="text-muted-foreground font-golos leading-relaxed mb-10">
-              Этот сайт — итог исследовательской работы. Здесь собраны только проверенные
-              бесплатные ресурсы, сгруппированные по типу и предмету.
+              Наш сайт — это гид по онлайн-подготовке к ОГЭ и ЕГЭ. Мы предлагаем
+              информацию об онлайн-школах, материалах по различным предметам
+              и бесплатных ресурсах для подготовки.
             </p>
             <div className="flex flex-wrap items-center gap-3">
               <span className="px-3 py-1.5 border border-gold/30 text-gold/70 text-xs font-golos tracking-wide">10 класс</span>
@@ -968,7 +959,7 @@ function Footer() {
           <div className="w-5 h-5 border border-gold/40 rotate-45 flex items-center justify-center">
             <div className="w-1.5 h-1.5 bg-gold/60" />
           </div>
-          <span className="font-cormorant text-sm text-foreground/60">Атлас Знаний</span>
+          <span className="font-cormorant text-sm text-foreground/60">Навигация успеха</span>
           <span>© 2026</span>
         </div>
         <span>Исследовательский проект ученицы 10 класса · 2025–2026 уч. год · Все ресурсы бесплатны</span>
