@@ -108,31 +108,31 @@ const materials = [
 ];
 
 const stats = [
-  { value: "1 200+", label: "Учебных материалов" },
-  { value: "24", label: "Предмета" },
-  { value: "80 000+", label: "Скачиваний в месяц" },
+  { value: "60+", label: "Бесплатных ресурсов" },
+  { value: "8", label: "Предметов школьной программы" },
+  { value: "100%", label: "Без регистрации и оплаты" },
 ];
 
 const features = [
   {
-    icon: "BookOpen",
-    title: "Полная библиотека",
-    desc: "Материалы охватывают программу 5–11 класса, ЕГЭ и ОГЭ по всем предметам",
+    icon: "Search",
+    title: "Цель исследования",
+    desc: "Выяснить, какие бесплатные онлайн-ресурсы реально помогают школьникам готовиться к ОГЭ и ЕГЭ",
   },
   {
-    icon: "Zap",
-    title: "Быстрый поиск",
-    desc: "Фильтры по предмету, типу и уровню — найди нужный материал за 10 секунд",
+    icon: "FlaskConical",
+    title: "Метод",
+    desc: "Анализ 60+ платформ, опрос одноклассников, сравнение по критериям: удобство, охват предметов, качество заданий",
   },
   {
-    icon: "Download",
-    title: "Скачай и используй",
-    desc: "Все материалы доступны в PDF. Открываются на любом устройстве",
+    icon: "BarChart2",
+    title: "Результат",
+    desc: "Составлен рейтинг ресурсов по категориям — от официальных государственных сайтов до Telegram-каналов",
   },
   {
-    icon: "Star",
-    title: "Проверенное качество",
-    desc: "Каждый материал составлен методистами и проверен учителями-практиками",
+    icon: "Lightbulb",
+    title: "Вывод",
+    desc: "Бесплатных ресурсов достаточно для полноценной подготовки. Главное — знать, где искать",
   },
 ];
 
@@ -196,7 +196,7 @@ function Navbar({ active, setActive }: { active: string; setActive: (s: string) 
           className="hidden md:flex items-center gap-2 px-4 py-2 bg-gold text-background text-sm font-medium tracking-wide hover:bg-gold/90 transition-colors duration-200"
         >
           <Icon name="BookOpen" size={15} />
-          Открыть библиотеку
+          Смотреть ресурсы
         </button>
 
         <button
@@ -250,26 +250,26 @@ function HeroSection() {
         <div className="opacity-0-init animate-fade-in delay-100 inline-flex items-center gap-3 mb-8">
           <div className="h-px w-12 bg-gold/60" />
           <span className="text-gold/80 text-xs tracking-[0.25em] uppercase font-golos font-medium">
-            Платформа учебных материалов
+            Исследовательский проект · 10 класс
           </span>
           <div className="h-px w-12 bg-gold/60" />
         </div>
 
         <h1 className="font-cormorant font-light leading-none tracking-tight mb-6">
-          <span className="block text-[clamp(4rem,12vw,10rem)] opacity-0-init animate-fade-up delay-200 text-foreground">
-            Всё что нужно
+          <span className="block text-[clamp(3rem,10vw,8rem)] opacity-0-init animate-fade-up delay-200 text-foreground">
+            Бесплатная
           </span>
-          <span className="block text-[clamp(4rem,12vw,10rem)] opacity-0-init animate-fade-up delay-300 text-gold-shimmer">
-            для учёбы
+          <span className="block text-[clamp(3rem,10vw,8rem)] opacity-0-init animate-fade-up delay-300 text-gold-shimmer">
+            подготовка
           </span>
-          <span className="block text-[clamp(2rem,6vw,5rem)] opacity-0-init animate-fade-up delay-400 text-muted-foreground font-light italic mt-2">
-            — в одном месте
+          <span className="block text-[clamp(1.8rem,5vw,4rem)] opacity-0-init animate-fade-up delay-400 text-muted-foreground font-light italic mt-2">
+            к ОГЭ и ЕГЭ — реально
           </span>
         </h1>
 
         <p className="opacity-0-init animate-fade-up delay-500 text-muted-foreground font-golos text-lg max-w-xl mx-auto leading-relaxed mb-12">
-          Шпаргалки, справочники и учебные материалы по всем школьным предметам.
-          Проверены методистами. Доступны бесплатно.
+          Исследовательский проект: обзор и систематизация бесплатных онлайн-ресурсов
+          для подготовки к школьным экзаменам. Без рекламы, без продаж.
         </p>
 
         <div className="opacity-0-init animate-fade-up delay-600 flex flex-col sm:flex-row gap-4 justify-center">
@@ -278,7 +278,7 @@ function HeroSection() {
             className="group px-8 py-4 bg-gold text-background font-golos font-semibold tracking-wide hover:bg-gold/90 transition-all duration-300 flex items-center gap-3 justify-center"
           >
             <Icon name="Library" size={18} />
-            Открыть библиотеку
+            Смотреть ресурсы
             <Icon name="ArrowRight" size={16} className="group-hover:translate-x-1 transition-transform" />
           </button>
           <button
@@ -392,8 +392,8 @@ function MaterialsSection() {
           </div>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <h2 className="font-cormorant text-5xl md:text-7xl font-light leading-none">
-              Учебные<br />
-              <span className="italic text-gold">материалы</span>
+              Шпаргалки<br />
+              <span className="italic text-gold">и справочники</span>
             </h2>
             <div className="relative max-w-xs w-full">
               <Icon name="Search" size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
@@ -462,29 +462,30 @@ function AboutSection() {
           <div>
             <div className="flex items-center gap-4 mb-6">
               <div className="h-px w-8 bg-gold/60" />
-              <span className="text-gold/80 text-xs tracking-[0.2em] uppercase font-golos">О платформе</span>
+              <span className="text-gold/80 text-xs tracking-[0.2em] uppercase font-golos">Об исследовании</span>
             </div>
             <h2 className="font-cormorant text-5xl md:text-6xl font-light leading-tight mb-8">
-              Знания должны быть{" "}
-              <em className="text-gold not-italic">доступны каждому</em>
+              Зачем платить, если<br />
+              <em className="text-gold not-italic">есть бесплатно?</em>
             </h2>
             <p className="text-muted-foreground font-golos leading-relaxed mb-6">
-              Атлас Знаний — открытая библиотека учебных материалов, созданная методистами
-              и учителями-практиками. Мы верим, что качественная подготовка не должна
-              зависеть от бюджета.
+              Многие школьники и родители считают, что хорошо подготовиться к ОГЭ и ЕГЭ
+              можно только с репетитором или на платных курсах. Это исследование проверяет
+              этот миф на практике.
+            </p>
+            <p className="text-muted-foreground font-golos leading-relaxed mb-6">
+              Я изучила более 60 онлайн-ресурсов, провела опрос среди одноклассников
+              и систематизировала результаты. Вывод: бесплатных инструментов достаточно
+              для уверенной подготовки — если знать, где искать.
             </p>
             <p className="text-muted-foreground font-golos leading-relaxed mb-10">
-              На платформе собраны шпаргалки, справочники, формульники и конспекты
-              по всем школьным предметам — от математики до литературы.
-              Все материалы бесплатны и доступны без регистрации.
+              Этот сайт — итог исследовательской работы. Здесь собраны только проверенные
+              бесплатные ресурсы, сгруппированные по типу и предмету.
             </p>
-            <div className="flex items-center gap-6">
-              <button className="px-6 py-3 bg-gold text-background font-golos font-medium text-sm tracking-wide hover:bg-gold/90 transition-colors">
-                Начать бесплатно
-              </button>
-              <span className="text-xs text-muted-foreground font-golos">
-                Без регистрации · Без рекламы
-              </span>
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="px-3 py-1.5 border border-gold/30 text-gold/70 text-xs font-golos tracking-wide">10 класс</span>
+              <span className="px-3 py-1.5 border border-border text-muted-foreground text-xs font-golos tracking-wide">Исследовательский проект</span>
+              <span className="px-3 py-1.5 border border-border text-muted-foreground text-xs font-golos tracking-wide">2025–2026 уч. год</span>
             </div>
           </div>
 
@@ -522,12 +523,12 @@ function ContactsSection() {
           <div className="h-px w-8 bg-gold/60" />
         </div>
         <h2 className="font-cormorant text-5xl md:text-7xl font-light leading-none mb-8">
-          Есть вопросы?<br />
-          <span className="italic text-gold">Напишите нам</span>
+          Связаться<br />
+          <span className="italic text-gold">с автором</span>
         </h2>
         <p className="text-muted-foreground font-golos mb-12 leading-relaxed max-w-lg mx-auto">
-          Хотите предложить материал, сообщить об ошибке или стать партнёром платформы —
-          будем рады услышать вас.
+          Если вы знаете полезный бесплатный ресурс, которого нет в списке,
+          или хотите задать вопрос по исследованию — напишите.
         </p>
 
         <div className="bg-card border border-border p-8 text-left">
@@ -662,7 +663,7 @@ type ResourceCategory = "official" | "free" | "paid" | "subjects" | "social";
 const resCategoryTabs: { id: ResourceCategory; label: string; icon: string; desc: string }[] = [
   { id: "official", label: "Официальные ресурсы", icon: "Shield", desc: "Государственные сайты — ФИПИ, Рособрнадзор, Госуслуги" },
   { id: "free", label: "Бесплатные тренажёры", icon: "Zap", desc: "Сайты для отработки заданий без вложений" },
-  { id: "paid", label: "Онлайн-школы", icon: "GraduationCap", desc: "Платные курсы с вебинарами и куратором" },
+  { id: "paid", label: "Онлайн-школы", icon: "GraduationCap", desc: "Онлайн-школы — для справки. Включены в исследование как платная альтернатива бесплатным ресурсам" },
   { id: "subjects", label: "По предметам", icon: "BookMarked", desc: "Лучшие сайты по каждому отдельному предмету" },
   { id: "social", label: "Каналы и приложения", icon: "Smartphone", desc: "Telegram-каналы, мобильные приложения, вузовские курсы" },
 ];
@@ -810,6 +811,14 @@ function FreeTrainersTable() {
 
 function PaidSchoolsTable() {
   return (
+    <div>
+      <div className="mb-4 px-4 py-3 bg-secondary border border-border flex items-start gap-3">
+        <Icon name="Info" size={16} className="text-muted-foreground mt-0.5 shrink-0" />
+        <p className="text-sm text-muted-foreground font-golos">
+          Эти ресурсы включены в исследование для сравнения. Основной вывод работы —
+          бесплатных инструментов достаточно. Платные школы здесь не рекомендуются.
+        </p>
+      </div>
     <div className="overflow-x-auto">
       <table className="w-full text-sm font-golos">
         <thead>
@@ -844,6 +853,7 @@ function PaidSchoolsTable() {
           ))}
         </tbody>
       </table>
+    </div>
     </div>
   );
 }
@@ -961,7 +971,7 @@ function Footer() {
           <span className="font-cormorant text-sm text-foreground/60">Атлас Знаний</span>
           <span>© 2026</span>
         </div>
-        <span>Все материалы предоставляются бесплатно для образовательных целей</span>
+        <span>Исследовательский проект ученицы 10 класса · 2025–2026 уч. год · Все ресурсы бесплатны</span>
       </div>
     </footer>
   );
