@@ -151,6 +151,7 @@ function Navbar({ active, setActive }: { active: string; setActive: (s: string) 
   const links = [
     { id: "home", label: "Главная" },
     { id: "materials", label: "Материалы" },
+    { id: "resources", label: "Ресурсы" },
     { id: "about", label: "О платформе" },
     { id: "contacts", label: "Контакты" },
   ];
@@ -583,6 +584,370 @@ function ContactsSection() {
   );
 }
 
+// ─── RESOURCES DATA ──────────────────────────────────────────────────────────
+
+const officialResources = [
+  { name: "ФИПИ", url: "https://fipi.ru/", desc: "Демоверсии, спецификации, кодификаторы, открытый банк заданий" },
+  { name: "Открытый банк заданий ЕГЭ", url: "https://ege.fipi.ru/bank", desc: "Тестовые задания по всем дисциплинам ЕГЭ" },
+  { name: "Навигатор ГИА (Рособрнадзор)", url: "https://clck.ru/aorb6", desc: "Официальные рекомендации и ссылки на полезные ресурсы" },
+  { name: "Навигатор подготовки на ФИПИ", url: "https://clck.ru/33diby", desc: "Видеоконсультации разработчиков КИМ" },
+  { name: "Навигатор ЕГЭ (Госуслуги)", url: "https://ege.gosuslugi.ru/lk/courses", desc: "Бесплатные материалы и варианты от ФИПИ. Математика и информатика" },
+];
+
+const freeTrainers = [
+  { name: "Решу ОГЭ", url: "https://oge.sdamgia.ru/", what: "Полная имитация экзамена, автопроверка, статистика ошибок", reg: false, subjects: "Все предметы", note: "Самый популярный ресурс" },
+  { name: "Решу ЕГЭ", url: "https://ege.sdamgia.ru/", what: "Варианты, тесты, автопроверка", reg: false, subjects: "Все предметы", note: "" },
+  { name: "Решутест", url: "https://reshutest.ru/", what: "Тесты с моментальной проверкой, разный уровень сложности", reg: true, subjects: "10 предметов", note: "Простой интерфейс" },
+  { name: "Российская электронная школа", url: "https://resh.edu.ru/", what: "Конспекты, видеолекции, тренировочные занятия", reg: false, subjects: "Все предметы 1–11 кл.", note: "Государственный ресурс" },
+  { name: "ЯКласс", url: "https://www.yaklass.ru/", what: "1,6 трлн вариантов заданий, тренажёры ОГЭ/ЕГЭ/ВПР, видеоуроки", reg: true, subjects: "Все школьные предметы", note: "Есть приложение" },
+  { name: "Фоксфорд (тренажёры)", url: "https://foxford.ru/", what: "Тесты с автопроверкой, разбор ошибок, видеообъяснения", reg: true, subjects: "Все предметы ЕГЭ и ОГЭ", note: "Бесплатно без курса" },
+  { name: "Яндекс.Учебник", url: "https://education.yandex.ru/", what: ">35 000 заданий, адаптивные подборки", reg: true, subjects: "Математика, русский, информатика", note: "Адаптируется под уровень" },
+  { name: "Московская электронная школа", url: "https://uchebnik.mos.ru/", what: "800 000+ аудио- и видеоматериалов, электронные пособия", reg: true, subjects: "Все предметы", note: "Ориентирована на Москву" },
+  { name: "Незнайка", url: "https://neznaika.info/", what: "Тесты ОГЭ и ЕГЭ, теория, разбор заданий", reg: false, subjects: "Все предметы", note: "Раздел «Шпаргалки»" },
+  { name: "4ЕГЭ", url: "https://4ege.ru/", what: "Тесты, пособия, видеоуроки, тренировочные варианты", reg: false, subjects: "Все предметы", note: "Скачивание PDF" },
+  { name: "Exam8", url: "https://www.exam8.ru/", what: "Архив вариантов прошлых лет, пробники, онлайн-тесты", reg: false, subjects: "Все предметы", note: "Реальные варианты прошлых лет" },
+  { name: "Время ЕГЭ", url: "https://vremyaege.ru/", what: "Онлайн-тесты, разбор заданий, видеоуроки", reg: false, subjects: "Все предметы", note: "Советы экспертов" },
+];
+
+const paidSchools = [
+  { name: "Сотка", url: "https://sotka.ru/", spec: "ЕГЭ и ОГЭ (все предметы)", price: "от 1 650 ₽/мес", free: "Пробный урок", note: "370 000+ учеников" },
+  { name: "Умскул", url: "https://umschool.net/", spec: "ЕГЭ и ОГЭ (все предметы)", price: "Платно", free: "Бесплатные стримы на YouTube", note: "Одна из самых популярных школ" },
+  { name: "Твоя сотка", url: "https://tvoyasotka.ru/", spec: "ЕГЭ и ОГЭ (все предметы)", price: "Платно", free: "Короткие видео на YouTube", note: "Визуализация и мемы для запоминания" },
+  { name: "Фоксфорд", url: "https://foxford.ru/", spec: "ЕГЭ, ОГЭ, олимпиады", price: "от 4 000 ₽/год", free: "Бесплатные тренажёры", note: "Выдают сертификаты" },
+  { name: "Maximum Education", url: "https://maximumtest.ru/", spec: "ЕГЭ и ОГЭ", price: "от 15 000 ₽/курс", free: "Бесплатные вебинары", note: "Гарантия результата" },
+  { name: "Тетрика", url: "https://tetrika-school.ru/", spec: "Индивидуальные занятия", price: "от 10 744 ₽/мес", free: "Пробный урок", note: "Гибкий график" },
+  { name: "Вебиум", url: "https://webium.ru/", spec: "ЕГЭ и ОГЭ", price: "Платно", free: "Бесплатные вебинары", note: "Интенсивы и марафоны" },
+  { name: "Годограф", url: "https://godograf.ru/", spec: "ЕГЭ и ОГЭ", price: "от 12 000 ₽/мес", free: "Бесплатные пробники", note: "Группы до 8 чел., личный куратор" },
+  { name: "Skysmart", url: "https://skysmart.ru/", spec: "ЕГЭ и ОГЭ", price: "от 8 000 ₽/мес", free: "Вводный урок", note: "Индивидуальные занятия" },
+  { name: "Школаково", url: "https://shkolkovo.net/", spec: "Математика, русский, физика", price: "Платно", free: "Бесплатный доступ к теории", note: "Кураторы — выпускники МГУ" },
+  { name: "99ballov", url: "https://99ballov.ru/", spec: "ЕГЭ и ОГЭ", price: "Платно", free: "Вводные уроки", note: "Курсы для учителей" },
+  { name: "Лектариум", url: "https://lectarium.ru/", spec: "ЕГЭ, ОГЭ, олимпиады", price: "Платно", free: "Бесплатный доступ по акции", note: "Резидент Сколково" },
+];
+
+const subjectSites = [
+  { subject: "Английский язык", name: "Langart", url: "https://langart.ru/", what: "Тесты, аудиотренажёры, карточки для слов, устная часть" },
+  { subject: "Английский язык", name: "ЕГЭ на 100", url: "https://ege-eng.ru/", what: "Теория, тесты, шаблоны эссе, аудирование" },
+  { subject: "История", name: "ED-STAR", url: "https://ed-star.ru/", what: "Тренажёр ЕГЭ, даты, личности, карты" },
+  { subject: "Обществознание", name: "Обществознание.ру", url: "https://obshchestvoznanie.ru/", what: "Теория, тесты, терминологический словарь, эссе" },
+  { subject: "Математика", name: "Math-prosto", url: "http://math-prosto.ru", what: "Понятные объяснения, разбор задач, формулы" },
+  { subject: "Математика", name: "Math100", url: "https://math100.ru/", what: "ЕГЭ и ОГЭ по математике, теория, видеоуроки" },
+  { subject: "Математика", name: "Alexlarin", url: "http://alexlarin.net/", what: "Олимпиадные задачи, разбор сложных вариантов" },
+  { subject: "Русский язык", name: "Грамма.ру", url: "http://gramma.ru/", what: "Справочник правил, словари, онлайн-тесты" },
+  { subject: "Русский язык", name: "Грамота.ру", url: "http://gramota.ru/", what: "Правила, словари, онлайн-проверка слов" },
+  { subject: "Литература", name: "Briefly", url: "http://www.briefly.ru/", what: "Краткое содержание 2000 произведений, характеристика героев" },
+  { subject: "Литература", name: "Классика", url: "http://klassika.ru/", what: "Полные тексты, биографии писателей, критические статьи" },
+  { subject: "Физика", name: "Физика для всех", url: "https://phys-oge-ege.ru/", what: "Теория, задачи с решениями, видеоуроки" },
+  { subject: "Химия", name: "Orgchem", url: "https://orgchem.ru/", what: "Органическая химия, реакционные схемы, тренажёры" },
+  { subject: "Биология", name: "Биоробот", url: "http://biorobot.ru/", what: "Тесты, теория в картинках, карточки для запоминания" },
+  { subject: "География", name: "geo-oge-ege.ru", url: "https://geo-oge-ege.ru/", what: "Теория, карты, тесты, разбор сложных заданий" },
+  { subject: "Информатика", name: "Поляков", url: "https://kpolyakov.spb.ru/", what: "Легендарный сайт: теория, задачи, программирование" },
+  { subject: "Информатика", name: "Stepik", url: "https://stepik.org/", what: "Интерактивные курсы по программированию (бесплатные)" },
+];
+
+const socialChannels = [
+  { cat: "Telegram-канал", name: "Данир на связи", url: "https://t.me/danirmath", what: "ОГЭ по математике, разбор заданий, вебинары (Умскул)", free: true },
+  { cat: "Telegram-канал", name: "ЕГЭ Студия", url: "https://t.me/egestudiya", what: "ЕГЭ по математике: таблицы, правила, видеоразборы", free: true },
+  { cat: "Мобильное приложение", name: "Умскул", url: "https://rustore.ru/", what: "Вебинары, тесты, домашние задания с преподавателями", free: false },
+  { cat: "Мобильное приложение", name: "Точка Знаний", url: "https://rustore.ru/", what: "Онлайн-школа 1–11 кл., ОГЭ и ЕГЭ, общение с тьютором", free: false },
+  { cat: "Мобильное приложение", name: "ЕГЭ Турбо", url: "https://egeturbo.ru/", what: "Интенсивы по всем предметам, онлайн-тренажёр, конспекты", free: true },
+  { cat: "Вузовские курсы", name: "ЦДП ТГУ (Томский ГУ)", url: "https://abiturient.tsu.ru/", what: "Подготовка к ЕГЭ/ОГЭ, занятия ведут преподаватели вуза", free: false },
+  { cat: "Вузовские курсы", name: "МИЭТ", url: "https://miet.ru/list_programs/dovuzovskaya-podgotovka/", what: "Акцент на математику, физику, информатику и дизайн. Пробные ЕГЭ", free: false },
+  { cat: "Бесплатная платформа", name: "Лектариум (акция для школ)", url: "https://r.lectarium.ru/unlimited-items-2", what: "ОГЭ и ЕГЭ: вебинары в записи, конспекты, пробные варианты", free: true },
+];
+
+// ─── RESOURCES SECTION ───────────────────────────────────────────────────────
+
+type ResourceCategory = "official" | "free" | "paid" | "subjects" | "social";
+
+const resCategoryTabs: { id: ResourceCategory; label: string; icon: string; desc: string }[] = [
+  { id: "official", label: "Официальные ресурсы", icon: "Shield", desc: "Государственные сайты — ФИПИ, Рособрнадзор, Госуслуги" },
+  { id: "free", label: "Бесплатные тренажёры", icon: "Zap", desc: "Сайты для отработки заданий без вложений" },
+  { id: "paid", label: "Онлайн-школы", icon: "GraduationCap", desc: "Платные курсы с вебинарами и куратором" },
+  { id: "subjects", label: "По предметам", icon: "BookMarked", desc: "Лучшие сайты по каждому отдельному предмету" },
+  { id: "social", label: "Каналы и приложения", icon: "Smartphone", desc: "Telegram-каналы, мобильные приложения, вузовские курсы" },
+];
+
+function ResourcesSection() {
+  const [activeTab, setActiveTab] = useState<ResourceCategory>("official");
+
+  return (
+    <section id="resources" className="py-32 px-6 relative">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="mb-16">
+          <div className="flex items-center gap-4 mb-4">
+            <div className="h-px w-8 bg-gold/60" />
+            <span className="text-gold/80 text-xs tracking-[0.2em] uppercase font-golos">Полезное</span>
+          </div>
+          <h2 className="font-cormorant text-5xl md:text-7xl font-light leading-none">
+            Сайты и<br />
+            <span className="italic text-gold">каналы</span>
+          </h2>
+          <p className="mt-4 text-muted-foreground font-golos max-w-xl leading-relaxed">
+            Проверенные ресурсы для подготовки к ОГЭ и ЕГЭ — от официальных государственных
+            сайтов до Telegram-каналов и мобильных приложений.
+          </p>
+        </div>
+
+        {/* Category tabs */}
+        <div className="flex flex-wrap gap-2 mb-10">
+          {resCategoryTabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`flex items-center gap-2 px-4 py-2.5 text-sm font-golos tracking-wide transition-all duration-200 border ${
+                activeTab === tab.id
+                  ? "bg-gold/10 border-gold/50 text-gold"
+                  : "bg-card border-border text-muted-foreground hover:border-gold/30 hover:text-foreground"
+              }`}
+            >
+              <Icon name={tab.icon} size={14} />
+              {tab.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Tab description */}
+        <p className="text-muted-foreground text-sm font-golos mb-8 flex items-center gap-2">
+          <Icon name="Info" size={14} className="text-gold/60" />
+          {resCategoryTabs.find((t) => t.id === activeTab)?.desc}
+        </p>
+
+        {/* Content */}
+        {activeTab === "official" && <OfficialTable />}
+        {activeTab === "free" && <FreeTrainersTable />}
+        {activeTab === "paid" && <PaidSchoolsTable />}
+        {activeTab === "subjects" && <SubjectSitesTable />}
+        {activeTab === "social" && <SocialTable />}
+      </div>
+    </section>
+  );
+}
+
+function OfficialTable() {
+  return (
+    <div className="overflow-x-auto">
+      <div className="mb-4 px-4 py-3 bg-gold/8 border border-gold/20 flex items-start gap-3">
+        <Icon name="ShieldCheck" size={16} className="text-gold mt-0.5 shrink-0" />
+        <p className="text-sm text-foreground/80 font-golos">
+          Самый надёжный источник — все демоверсии и кодификаторы здесь актуальны.
+        </p>
+      </div>
+      <table className="w-full text-sm font-golos">
+        <thead>
+          <tr className="border-b border-border">
+            <th className="text-left py-3 px-4 text-xs text-muted-foreground uppercase tracking-widest font-medium">Название</th>
+            <th className="text-left py-3 px-4 text-xs text-muted-foreground uppercase tracking-widest font-medium hidden md:table-cell">Что даёт</th>
+            <th className="py-3 px-4 text-xs text-muted-foreground uppercase tracking-widest font-medium">Ссылка</th>
+          </tr>
+        </thead>
+        <tbody>
+          {officialResources.map((r) => (
+            <tr key={r.url} className="border-b border-border/50 hover:bg-card transition-colors group">
+              <td className="py-4 px-4 font-medium text-foreground">{r.name}</td>
+              <td className="py-4 px-4 text-muted-foreground hidden md:table-cell leading-relaxed">{r.desc}</td>
+              <td className="py-4 px-4 text-center">
+                <a
+                  href={r.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-gold/30 text-gold/80 text-xs hover:border-gold hover:text-gold transition-all duration-200"
+                >
+                  <Icon name="ExternalLink" size={11} />
+                  Открыть
+                </a>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function FreeTrainersTable() {
+  return (
+    <div className="overflow-x-auto">
+      <table className="w-full text-sm font-golos">
+        <thead>
+          <tr className="border-b border-border">
+            <th className="text-left py-3 px-4 text-xs text-muted-foreground uppercase tracking-widest font-medium">Название</th>
+            <th className="text-left py-3 px-4 text-xs text-muted-foreground uppercase tracking-widest font-medium hidden lg:table-cell">Что даёт</th>
+            <th className="text-left py-3 px-4 text-xs text-muted-foreground uppercase tracking-widest font-medium hidden md:table-cell">Предметы</th>
+            <th className="text-center py-3 px-4 text-xs text-muted-foreground uppercase tracking-widest font-medium hidden md:table-cell">Регистрация</th>
+            <th className="py-3 px-4"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {freeTrainers.map((r) => (
+            <tr key={r.url} className="border-b border-border/50 hover:bg-card transition-colors">
+              <td className="py-4 px-4">
+                <div className="font-medium text-foreground">{r.name}</div>
+                {r.note && <div className="text-xs text-gold/70 mt-0.5">{r.note}</div>}
+              </td>
+              <td className="py-4 px-4 text-muted-foreground hidden lg:table-cell leading-relaxed max-w-xs">{r.what}</td>
+              <td className="py-4 px-4 text-muted-foreground hidden md:table-cell">{r.subjects}</td>
+              <td className="py-4 px-4 text-center hidden md:table-cell">
+                <span className={`text-xs px-2 py-0.5 ${r.reg ? "text-amber-400/80" : "text-emerald-400/80"}`}>
+                  {r.reg ? "Нужна" : "Не нужна"}
+                </span>
+              </td>
+              <td className="py-4 px-4 text-center">
+                <a href={r.url} target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-gold/30 text-gold/80 text-xs hover:border-gold hover:text-gold transition-all duration-200">
+                  <Icon name="ExternalLink" size={11} />
+                  Открыть
+                </a>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function PaidSchoolsTable() {
+  return (
+    <div className="overflow-x-auto">
+      <table className="w-full text-sm font-golos">
+        <thead>
+          <tr className="border-b border-border">
+            <th className="text-left py-3 px-4 text-xs text-muted-foreground uppercase tracking-widest font-medium">Школа</th>
+            <th className="text-left py-3 px-4 text-xs text-muted-foreground uppercase tracking-widest font-medium hidden md:table-cell">Специализация</th>
+            <th className="text-left py-3 px-4 text-xs text-muted-foreground uppercase tracking-widest font-medium hidden md:table-cell">Цена</th>
+            <th className="text-left py-3 px-4 text-xs text-muted-foreground uppercase tracking-widest font-medium hidden lg:table-cell">Бесплатный контент</th>
+            <th className="py-3 px-4"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {paidSchools.map((r) => (
+            <tr key={r.url} className="border-b border-border/50 hover:bg-card transition-colors">
+              <td className="py-4 px-4">
+                <div className="font-medium text-foreground">{r.name}</div>
+                <div className="text-xs text-muted-foreground mt-0.5">{r.note}</div>
+              </td>
+              <td className="py-4 px-4 text-muted-foreground hidden md:table-cell">{r.spec}</td>
+              <td className="py-4 px-4 hidden md:table-cell">
+                <span className="text-amber-400/80 text-xs font-medium">{r.price}</span>
+              </td>
+              <td className="py-4 px-4 text-muted-foreground text-xs hidden lg:table-cell">{r.free}</td>
+              <td className="py-4 px-4 text-center">
+                <a href={r.url} target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-gold/30 text-gold/80 text-xs hover:border-gold hover:text-gold transition-all duration-200">
+                  <Icon name="ExternalLink" size={11} />
+                  Открыть
+                </a>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function SubjectSitesTable() {
+  const uniqueSubjects = Array.from(new Set(subjectSites.map((s) => s.subject)));
+  const [activeSubj, setActiveSubj] = useState("Все");
+
+  const filtered = activeSubj === "Все" ? subjectSites : subjectSites.filter((s) => s.subject === activeSubj);
+
+  return (
+    <div>
+      <div className="flex flex-wrap gap-2 mb-6">
+        {["Все", ...uniqueSubjects].map((s) => (
+          <button key={s} onClick={() => setActiveSubj(s)}
+            className={`subject-tag text-xs ${activeSubj === s ? "active" : "text-muted-foreground bg-card"}`}>
+            {s}
+          </button>
+        ))}
+      </div>
+      <div className="overflow-x-auto">
+        <table className="w-full text-sm font-golos">
+          <thead>
+            <tr className="border-b border-border">
+              <th className="text-left py-3 px-4 text-xs text-muted-foreground uppercase tracking-widest font-medium">Предмет</th>
+              <th className="text-left py-3 px-4 text-xs text-muted-foreground uppercase tracking-widest font-medium">Сайт</th>
+              <th className="text-left py-3 px-4 text-xs text-muted-foreground uppercase tracking-widest font-medium hidden md:table-cell">Что даёт</th>
+              <th className="py-3 px-4"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {filtered.map((r) => (
+              <tr key={r.url + r.name} className="border-b border-border/50 hover:bg-card transition-colors">
+                <td className="py-4 px-4">
+                  <span className="text-xs text-muted-foreground bg-secondary px-2 py-0.5 whitespace-nowrap">{r.subject}</span>
+                </td>
+                <td className="py-4 px-4 font-medium text-foreground">{r.name}</td>
+                <td className="py-4 px-4 text-muted-foreground hidden md:table-cell leading-relaxed">{r.what}</td>
+                <td className="py-4 px-4 text-center">
+                  <a href={r.url} target="_blank" rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-gold/30 text-gold/80 text-xs hover:border-gold hover:text-gold transition-all duration-200">
+                    <Icon name="ExternalLink" size={11} />
+                    Открыть
+                  </a>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+function SocialTable() {
+  const cats = Array.from(new Set(socialChannels.map((s) => s.cat)));
+  return (
+    <div className="space-y-10">
+      {cats.map((cat) => (
+        <div key={cat}>
+          <h3 className="font-cormorant text-2xl font-semibold text-foreground mb-4 flex items-center gap-3">
+            <div className="h-px w-6 bg-gold/50" />
+            {cat}
+          </h3>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm font-golos">
+              <thead>
+                <tr className="border-b border-border">
+                  <th className="text-left py-3 px-4 text-xs text-muted-foreground uppercase tracking-widest font-medium">Название</th>
+                  <th className="text-left py-3 px-4 text-xs text-muted-foreground uppercase tracking-widest font-medium hidden md:table-cell">Что даёт</th>
+                  <th className="text-center py-3 px-4 text-xs text-muted-foreground uppercase tracking-widest font-medium hidden md:table-cell">Бесплатно</th>
+                  <th className="py-3 px-4"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {socialChannels
+                  .filter((r) => r.cat === cat)
+                  .map((r) => (
+                    <tr key={r.name} className="border-b border-border/50 hover:bg-card transition-colors">
+                      <td className="py-4 px-4 font-medium text-foreground">{r.name}</td>
+                      <td className="py-4 px-4 text-muted-foreground hidden md:table-cell leading-relaxed">{r.what}</td>
+                      <td className="py-4 px-4 text-center hidden md:table-cell">
+                        <span className={`text-xs ${r.free ? "text-emerald-400/80" : "text-amber-400/80"}`}>
+                          {r.free ? "✓ Да" : "Платно"}
+                        </span>
+                      </td>
+                      <td className="py-4 px-4 text-center">
+                        <a href={r.url} target="_blank" rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-gold/30 text-gold/80 text-xs hover:border-gold hover:text-gold transition-all duration-200">
+                          <Icon name="ExternalLink" size={11} />
+                          Открыть
+                        </a>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 // ─── FOOTER ──────────────────────────────────────────────────────────────────
 
 function Footer() {
@@ -608,7 +973,7 @@ export default function Index() {
   const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
-    const sections = ["home", "materials", "about", "contacts"];
+    const sections = ["home", "materials", "resources", "about", "contacts"];
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -630,6 +995,7 @@ export default function Index() {
       <main>
         <HeroSection />
         <MaterialsSection />
+        <ResourcesSection />
         <AboutSection />
         <ContactsSection />
       </main>
