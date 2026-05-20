@@ -211,6 +211,57 @@ function HeroSection() {
 
 
 
+// ─── HOW IT WORKS ────────────────────────────────────────────────────────────
+
+function HowItWorksSection() {
+  const steps = [
+    {
+      number: "01",
+      title: "Выбор предмета",
+      desc: "Определитесь с предметом, к которому хотите подготовиться.",
+    },
+    {
+      number: "02",
+      title: "Поиск онлайн-школ",
+      desc: "Найдите подходящие онлайн-школы для подготовки к экзаменам.",
+    },
+    {
+      number: "03",
+      title: "Просмотр бесплатных материалов",
+      desc: "Ознакомьтесь с бесплатными ресурсами для подготовки.",
+    },
+  ];
+
+  return (
+    <section id="how" className="py-32 px-6">
+      <div className="max-w-7xl mx-auto">
+        <div className="mb-16">
+          <div className="flex items-center gap-4 mb-4">
+            <div className="h-px w-8 bg-gold/60" />
+            <span className="text-gold/80 text-xs tracking-[0.2em] uppercase font-golos">Инструкция</span>
+          </div>
+          <h2 className="font-cormorant text-5xl md:text-7xl font-light leading-none">
+            Как это <span className="italic text-gold">работает</span>
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {steps.map((step) => (
+            <div key={step.number} className="card-hover bg-card p-8 flex flex-col gap-6">
+              <span className="font-cormorant text-6xl font-light text-gold/30 leading-none">{step.number}</span>
+              <div className="h-px bg-border" />
+              <div>
+                <h3 className="font-cormorant text-2xl font-semibold text-foreground mb-3">{step.title}</h3>
+                <p className="text-muted-foreground font-golos text-sm leading-relaxed">{step.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ─── ABOUT ───────────────────────────────────────────────────────────────────
 
 function AboutSection() {
@@ -760,6 +811,7 @@ export default function Index() {
       <main>
         <HeroSection />
         <ResourcesSection />
+        <HowItWorksSection />
         <AboutSection />
         <ContactsSection />
       </main>
